@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import TeamPage from './pages/TeamPage';
 import AIPage from './pages/AIPage';
 import StatisticsPage from './pages/StatisticsPage';
+import { Brain } from 'lucide-react';
 
 interface DashboardProps {
   userName: string;
@@ -14,17 +15,43 @@ export type PageType = 'home' | 'team' | 'ai' | 'statistics' | 'ai-interface';
 
 const Dashboard: React.FC<DashboardProps> = ({ userName }) => {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handlePageChange = (page: PageType) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setCurrentPage(page);
+      setIsLoading(false);
+    }, 800);
+  };
 
   const renderPage = () => {
+    if (isLoading) {
+      return (
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <div className="relative mb-8">
+              <div className="w-20 h-20 border-4 border-blue-200 rounded-full animate-spin border-t-blue-600 mx-auto"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Brain className="w-8 h-8 text-blue-600 animate-pulse" />
+              </div>
+            </div>
+            <h2 className="text-2xl font-bold text-blue-900 mb-2">Loading...</h2>
+            <p className="text-blue-600">Please wait while we prepare the content</p>
+          </div>
+        </div>
+      );
+    }
+
     switch (currentPage) {
       case 'home':
         return <HomePage />;
       case 'team':
         return <TeamPage />;
       case 'ai':
-        return <AIPage onNavigateToInterface={() => setCurrentPage('ai-interface')} />;
+        return <AIPage onNavigateToInterface={() => handlePageChange('ai-interface')} />;
       case 'ai-interface':
-        return <AIInterfacePage onBack={() => setCurrentPage('ai')} />;
+        return <AIInterfacePage onBack={() => handlePageChange('ai')} />;
       case 'statistics':
         return <StatisticsPage />;
       default:
@@ -34,7 +61,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userName }) => {
 
   return (
     <div className="min-h-screen bg-blue-50 flex">
-      <Sidebar currentPage={currentPage} onPageChange={setCurrentPage} />
+      <Sidebar currentPage={currentPage} onPageChange={handlePageChange} />
       <div className="flex-1 flex flex-col">
         <Header userName={userName} />
         <main className="flex-1 overflow-auto">

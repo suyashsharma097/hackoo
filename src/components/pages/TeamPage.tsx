@@ -75,13 +75,12 @@ const TeamPage: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-7xl mx-auto">
         {teamMembers.map((member, index) => (
           <div key={index} className="bg-white rounded-3xl hover:border-blue-300 transition-all duration-300 overflow-hidden border border-blue-200">
-            <div className="relative">
+            <div className="relative p-8 flex justify-center">
               <img 
                 src={member.image} 
                 alt={member.name}
-                className="w-full h-64 object-cover"
+                className="w-48 h-48 object-cover rounded-full border-4 border-blue-100"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
             
             <div className="p-10">

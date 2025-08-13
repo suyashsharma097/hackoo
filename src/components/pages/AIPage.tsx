@@ -38,12 +38,11 @@ const AIPage: React.FC<AIPageProps> = ({ onNavigateToInterface }) => {
   ];
 
   const pipeline = [
-    { step: 1, title: "Video Input", description: "Capture video stream from camera", icon: Camera },
-    { step: 2, title: "Preprocessing", description: "Extract and normalize hand landmarks", icon: Code },
-    { step: 3, title: "Feature Extraction", description: "Convert landmarks to feature vectors", icon: Network },
-    { step: 4, title: "Model Inference", description: "Predict gesture using trained model", icon: Brain },
-    { step: 5, title: "Post-processing", description: "Apply smoothing and confidence filtering", icon: BarChart },
-    { step: 6, title: "Output", description: "Display recognized text or action", icon: Zap }
+    { step: 1, title: "Images Capture", description: "Capture and collect sign language gesture images", icon: Camera },
+    { step: 2, title: "Model Training", description: "Train deep learning models on captured datasets", icon: Brain },
+    { step: 3, title: "Testing Model", description: "Validate and test model accuracy and performance", icon: BarChart },
+    { step: 4, title: "Final Processing", description: "Optimize model for real-time inference", icon: Code },
+    { step: 5, title: "Deployment", description: "Deploy trained model to production environment", icon: Zap }
   ];
 
   const metrics = [
@@ -64,10 +63,9 @@ const AIPage: React.FC<AIPageProps> = ({ onNavigateToInterface }) => {
         </p>
         <button
           onClick={onNavigateToInterface}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-12 py-5 rounded-2xl font-semibold text-lg transition-all duration-200 flex items-center gap-4 mx-auto"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-16 py-6 rounded-3xl font-bold text-2xl transition-all duration-200 flex items-center gap-6 mx-auto shadow-lg hover:shadow-xl transform hover:scale-105"
         >
-          <Play className="w-6 h-6" />
-          Use AI Recognition
+          🚀 Run the Model
         </button>
       </div>
 
@@ -112,9 +110,9 @@ const AIPage: React.FC<AIPageProps> = ({ onNavigateToInterface }) => {
       </div>
 
       {/* Processing Pipeline */}
-      <div className="bg-white rounded-3xl p-16 border border-blue-200 max-w-7xl mx-auto">
+      <div className="bg-white rounded-3xl p-16 border border-blue-200 max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-blue-900 mb-16 text-center">Processing Pipeline</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {pipeline.map((item, index) => {
             const Icon = item.icon;
             return (
@@ -130,7 +128,7 @@ const AIPage: React.FC<AIPageProps> = ({ onNavigateToInterface }) => {
                   <p className="text-blue-700 leading-relaxed text-lg">{item.description}</p>
                 </div>
                 {index < pipeline.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-6 w-12 h-1 bg-blue-300 transform -translate-y-1/2 rounded-full"></div>
+                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-1 bg-blue-300 transform -translate-y-1/2 rounded-full"></div>
                 )}
               </div>
             );
