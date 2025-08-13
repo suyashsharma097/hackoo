@@ -1,0 +1,152 @@
+import React from 'react';
+import { Github, Linkedin, Mail, Code2, Award, Coffee } from 'lucide-react';
+
+const TeamPage: React.FC = () => {
+  const teamMembers = [
+    {
+      name: "Alex Chen",
+      role: "Machine Learning Engineer",
+      description: "Specializes in computer vision and deep learning model development for real-time gesture recognition.",
+      skills: ["Python", "TensorFlow", "OpenCV", "PyTorch", "MediaPipe"],
+      image: "https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400",
+      achievements: ["Published 3 ML papers", "Google AI Resident", "Kaggle Expert"]
+    },
+    {
+      name: "Sarah Johnson",
+      role: "Full Stack Developer",
+      description: "Expert in web technologies and real-time application development with focus on accessibility.",
+      skills: ["React", "Node.js", "WebRTC", "Python", "TypeScript"],
+      image: "https://images.pexels.com/photos/3778603/pexels-photo-3778603.jpeg?auto=compress&cs=tinysrgb&w=400",
+      achievements: ["AWS Certified", "Open Source Contributor", "Accessibility Advocate"]
+    },
+    {
+      name: "Marcus Rodriguez",
+      role: "Data Scientist",
+      description: "Focuses on data preprocessing, model training, and performance optimization for sign language datasets.",
+      skills: ["Python", "Pandas", "Scikit-learn", "Data Analysis", "Statistics"],
+      image: "https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=400",
+      achievements: ["PhD in Statistics", "Data Science Mentor", "Research Publications"]
+    },
+    {
+      name: "Emma Thompson",
+      role: "UI/UX Designer & Developer",
+      description: "Creates intuitive interfaces and ensures accessibility standards for inclusive user experiences.",
+      skills: ["Figma", "React", "CSS", "Accessibility", "User Research"],
+      image: "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=400",
+      achievements: ["UX Certified", "Design Systems Expert", "Inclusive Design Leader"]
+    }
+  ];
+
+  const teamStats = [
+    { label: "Combined Experience", value: "15+ Years", icon: Award },
+    { label: "Projects Completed", value: "50+", icon: Code2 },
+    { label: "Coffee Consumed", value: "∞", icon: Coffee },
+    { label: "Lines of Code", value: "100K+", icon: Github }
+  ];
+
+  return (
+    <div className="p-6 space-y-8">
+      {/* Header */}
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h1>
+        <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          A passionate team of four developers, designers, and researchers working together to make 
+          communication accessible through innovative technology.
+        </p>
+      </div>
+
+      {/* Team Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {teamStats.map((stat, index) => {
+          const Icon = stat.icon;
+          return (
+            <div key={index} className="bg-white rounded-xl p-6 border border-gray-200 text-center hover:shadow-lg transition-all duration-200">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg mb-4">
+                <Icon className="w-6 h-6 text-white" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900 mb-1">{stat.value}</div>
+              <div className="text-sm text-gray-500">{stat.label}</div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Team Members */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {teamMembers.map((member, index) => (
+          <div key={index} className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200">
+            <div className="relative">
+              <img 
+                src={member.image} 
+                alt={member.name}
+                className="w-full h-48 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            </div>
+            
+            <div className="p-6">
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                  <p className="text-blue-600 font-semibold">{member.role}</p>
+                </div>
+                <div className="flex gap-2">
+                  <button className="p-2 text-gray-400 hover:text-blue-600 transition-colors duration-200">
+                    <Github className="w-4 h-4" />
+                  </button>
+                  <button className="p-2 text-gray-400 hover:text-blue-600 transition-colors duration-200">
+                    <Linkedin className="w-4 h-4" />
+                  </button>
+                  <button className="p-2 text-gray-400 hover:text-blue-600 transition-colors duration-200">
+                    <Mail className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+              
+              <p className="text-gray-600 text-sm mb-4 leading-relaxed">{member.description}</p>
+              
+              <div className="mb-4">
+                <h4 className="text-sm font-semibold text-gray-800 mb-2">Skills</h4>
+                <div className="flex flex-wrap gap-2">
+                  {member.skills.map((skill, skillIndex) => (
+                    <span key={skillIndex} className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium border border-blue-100">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="text-sm font-semibold text-gray-800 mb-2">Achievements</h4>
+                <ul className="space-y-1">
+                  {member.achievements.map((achievement, achIndex) => (
+                    <li key={achIndex} className="text-xs text-gray-600 flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                      {achievement}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Team Mission */}
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-center text-white">
+        <Code2 className="w-16 h-16 mx-auto mb-6 opacity-90" />
+        <h3 className="text-3xl font-bold mb-4">Built with Passion</h3>
+        <p className="text-blue-100 text-lg max-w-2xl mx-auto leading-relaxed mb-6">
+          This project represents countless hours of research, development, and testing. 
+          We're committed to creating technology that makes a real difference in people's lives.
+        </p>
+        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 max-w-md mx-auto">
+          <p className="text-sm font-medium">Hackathon 2024 Project</p>
+          <p className="text-xs text-blue-200 mt-1">Bridging communication gaps with AI</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TeamPage;
